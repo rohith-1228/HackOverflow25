@@ -1,0 +1,283 @@
+/* Gallery Page Specific Styles */
+
+/* This CSS file should be linked AFTER the main styles.css to ensure these styles take precedence */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .nav-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 0 2rem;
+  }
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  right: 1rem;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-card);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: var(--transition-smooth);
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary);
+  background-color: var(--accent);
+}
+
+.mobile-admin-btn {
+  margin: 0.5rem 0.75rem;
+}
+/* Hero Section */
+.gallery-hero {
+    background-color: var(--card-bg-color);
+    padding-top: 8rem; /* Space for the fixed navigation bar */
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.gallery-hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.gallery-hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--light-text-color);
+    font-size: 1.125rem;
+}
+
+/* Gallery and Card Sections */
+.gallery-section,
+.card-gallery-section {
+    padding: 3rem 0;
+    background-color: var(--background-color);
+}
+
+.card-gallery-section {
+    padding-bottom: 5rem;
+}
+
+/* Override Bootstrap Carousel Styles for a civic-themed look */
+.carousel-item img {
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 0.8rem;
+}
+
+/* Card Styles */
+.card-gallery {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card-gallery:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-gallery .card-img-top {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.card-gallery .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color-dark);
+}
+
+.card-gallery .card-text {
+    font-size: 0.95rem;
+    color: var(--light-text-color);
+}
+
+.card-gallery .card-text-meta {
+    font-size: 0.85rem;
+    color: var(--light-text-color);
+    font-style: italic;
+    margin-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 0.5rem;
+}
+
+/* Search and Filter Section (copied from styles.css for self-containment) */
+.search-options {
+    background-color: var(--card-bg-color);
+    padding: 5rem 0;
+}
+
+.search-container {
+    background-color: var(--background-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    align-items: flex-end;
+}
+
+.search-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-field label {
+    font-weight: 600;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.search-field input, .search-field select {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.search-field input:focus, .search-field select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.search-btn {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .gallery-hero-title {
+        font-size: 2rem;
+    }
+
+    .gallery-hero-description {
+        font-size: 1rem;
+    }
+}

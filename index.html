@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civic Issue Reporting & Resolution System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="language-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Civic Report</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
+                <a href="index.html" class="nav-link active" data-translate="home">Home</a>
+                <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="Gallery.html" class="nav-link" data-translate="gallery">Gallery</a>
+                <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
+                <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
+                <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        <span id="currentLang">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <button class="language-option" data-lang="en">
+                            <span class="lang-flag">🇺🇸</span>
+                            <span class="lang-name">English</span>
+                        </button>
+                        <button class="language-option" data-lang="hi">
+                            <span class="lang-flag">🇮🇳</span>
+                            <span class="lang-name">हिंदी</span>
+                        </button>
+                        <button class="language-option" data-lang="te">
+                            <span class="lang-flag">🇮🇳</span>
+                            <span class="lang-name">తెలుగు</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link active" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link" data-translate="contact">Contact</a>
+            
+            <!-- Mobile Language Switcher -->
+            <div class="mobile-language-switcher">
+                <div class="mobile-lang-title" data-translate="language">Language</div>
+                <div class="mobile-lang-options">
+                    <button class="mobile-lang-option" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <span class="lang-name">English</span>
+                    </button>
+                    <button class="mobile-lang-option" data-lang="hi">
+                        <span class="lang-flag">🇮🇳</span>
+                        <span class="lang-name">हिंदी</span>
+                    </button>
+                    <button class="mobile-lang-option" data-lang="te">
+                        <span class="lang-flag">🇮🇳</span>
+                        <span class="lang-name">తెలుగు</span>
+                    </button>
+                </div>
+            </div>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Background Image -->
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1593941707882-6e2a74c3a7bd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern civic city" class="hero-img">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title" data-translate="heroTitle">
+                    Report Issues. 
+                    <span class="gradient-text">Get Them Resolved.</span>
+                    <br>
+                    Build a Cleaner, Greener City Together.
+                </h1>
+                
+                <p class="hero-description" data-translate="heroDescription">
+                    A smart platform that connects citizens and authorities to resolve civic problems like potholes, 
+                    garbage, drainage, and streetlights with real-time updates and full transparency.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="report-issue.html" class="btn btn-primary btn-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        <span data-translate="reportNow">Report an Issue Now</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12,5 19,12 12,19"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="view-issues.html" class="btn btn-outline btn-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <span data-translate="viewReported">View Reported Issues</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Floating stats cards -->
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number success">120</div>
+                    <div class="stat-label" data-translate="totalReports">Total Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number success">85</div>
+                    <div class="stat-label" data-translate="resolved">Resolved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number progress">25</div>
+                    <div class="stat-label" data-translate="inProgress">In Progress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number warning">10</div>
+                    <div class="stat-label" data-translate="pending">Pending</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span data-translate="aboutOur">About Our</span> <span class="gradient-text" data-translate="mission">Mission</span>
+                </h2>
+                <p class="section-description" data-translate="aboutDescription">
+                    Our Civic Issue Reporting & Resolution System is designed under the theme of 
+                    <span class="highlight">Clean & Green Technology</span>. 
+                    It allows citizens to actively participate in making their city better by reporting problems online. 
+                    Municipal authorities can then review, act, and resolve them efficiently, ensuring accountability and trust.
+                </p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title" data-translate="cleanGreen">Clean & Green</h3>
+                    <p class="value-description" data-translate="cleanGreenDesc">Promoting environmental sustainability through technology-driven civic solutions.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title" data-translate="trustTransparency">Trust & Transparency</h3>
+                    <p class="value-description" data-translate="trustTransparencyDesc">Building accountability between citizens and authorities with full transparency.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title" data-translate="communityDriven">Community Driven</h3>
+                    <p class="value-description" data-translate="communityDrivenDesc">Empowering citizens to actively participate in making their city better.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="10,8 16,12 10,16 10,8"/>
+                        </svg>
+                    </div>
+                    <h3 class="value-title" data-translate="efficientResolution">Efficient Resolution</h3>
+                    <p class="value-description" data-translate="efficientResolutionDesc">Streamlined processes ensure issues are resolved quickly and effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span data-translate="howIt">How It</span> <span class="gradient-text" data-translate="works">Works</span>
+                </h2>
+                <p class="section-description" data-translate="howItWorksDescription">
+                    Our streamlined process ensures your civic issues are handled efficiently from report to resolution.
+                </p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon primary">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                    </div>
+                    <h3 class="step-title" data-translate="reportAnIssueStep">Report an Issue</h3>
+                    <p class="step-description" data-translate="reportAnIssueStepDesc">Submit details with description, photo, and location through our simple form.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon trust-orange">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        </svg>
+                    </div>
+                    <h3 class="step-title" data-translate="storedInSystem">Stored in System</h3>
+                    <p class="step-description" data-translate="storedInSystemDesc">Issue is recorded in a centralized database for tracking and management.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon progress">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="step-title" data-translate="authoritiesTakeAction">Authorities Take Action</h3>
+                    <p class="step-description" data-translate="authoritiesTakeActionDesc">Concerned department is automatically notified and assigned the issue.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon success">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22,4 12,14.01 9,11.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="step-title" data-translate="trackResolve">Track & Resolve</h3>
+                    <p class="step-description" data-translate="trackResolveDesc">Citizen receives real-time updates until the issue is completely resolved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span data-translate="powerful">Powerful</span> <span class="gradient-text" data-translate="features">Features</span>
+                </h2>
+                <p class="section-description" data-translate="featuresDescription">
+                    Everything you need to report, track, and resolve civic issues efficiently and transparently.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                            <path d="M2 2l7.586 7.586"/>
+                            <circle cx="11" cy="11" r="2"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="simpleReportingForm">Simple Reporting Form</h3>
+                        <p class="feature-description" data-translate="simpleReportingFormDesc">Quick and intuitive form to report any civic issue in just a few clicks.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="locationPhotoSubmissions">Location & Photo Submissions</h3>
+                        <p class="feature-description" data-translate="locationPhotoSubmissionsDesc">Add precise location and photos for accurate issue identification and tracking.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="realTimeStatusTracking">Real-Time Status Tracking</h3>
+                        <p class="feature-description" data-translate="realTimeStatusTrackingDesc">Monitor your report status from pending to resolved with live updates.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="8.5" cy="7" r="4"/>
+                            <path d="M20 8v6"/>
+                            <path d="M23 11h-6"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="adminDashboardFeature">Admin Dashboard</h3>
+                        <p class="feature-description" data-translate="adminDashboardFeatureDesc">Comprehensive dashboard for authorities to manage and resolve issues efficiently.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="smartNotifications">Smart Notifications</h3>
+                        <p class="feature-description" data-translate="smartNotificationsDesc">Get instant notifications when your reported issue status changes.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="beforeAfterProof">Before & After Proof</h3>
+                        <p class="feature-description" data-translate="beforeAfterProofDesc">Visual documentation showing the issue resolution with transparency.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="quickResponseTime">Quick Response Time</h3>
+                        <p class="feature-description" data-translate="quickResponseTimeDesc">Automated routing ensures issues reach the right department immediately.</p>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title" data-translate="secureReliable">Secure & Reliable</h3>
+                        <p class="feature-description" data-translate="secureReliableDesc">Your data is protected with enterprise-grade security and privacy measures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span data-translate="live">Live</span> <span class="gradient-text" data-translate="statistics">Statistics</span>
+                </h2>
+                <p class="section-description" data-translate="statisticsDescription">
+                    Real-time data showing the impact of our civic reporting system in building a better community.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card-large">
+                    <div class="stat-icon-large primary">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number-large primary">120</div>
+                    <h3 class="stat-title-large" data-translate="totalIssuesReported">Total Issues Reported</h3>
+                    <p class="stat-description-large" data-translate="growingCommunity">Growing community participation</p>
+                </div>
+
+                <div class="stat-card-large">
+                    <div class="stat-icon-large success">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22,4 12,14.01 9,11.01"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number-large success">85</div>
+                    <h3 class="stat-title-large" data-translate="issuesResolvedStat">Issues Resolved</h3>
+                    <p class="stat-description-large" data-translate="successfullyCompleted">Successfully completed</p>
+                </div>
+
+                <div class="stat-card-large">
+                    <div class="stat-icon-large progress">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number-large progress">25</div>
+                    <h3 class="stat-title-large" data-translate="issuesInProgressStat">Issues In Progress</h3>
+                    <p class="stat-description-large" data-translate="currentlyBeingAddressed">Currently being addressed</p>
+                </div>
+
+                <div class="stat-card-large">
+                    <div class="stat-icon-large warning">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number-large warning">10</div>
+                    <h3 class="stat-title-large" data-translate="pendingIssuesStat">Pending Issues</h3>
+                    <p class="stat-description-large" data-translate="awaitingAssignment">Awaiting assignment</p>
+                </div>
+            </div>
+
+            <!-- Resolution Rate Card -->
+            <div class="resolution-card">
+                <div class="resolution-number">71%</div>
+                <h3 class="resolution-title" data-translate="resolutionRate">Resolution Rate</h3>
+                <p class="resolution-description" data-translate="resolutionRateDesc">Of reported issues successfully resolved by our system</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why It Matters Section -->
+    <section id="why-it-matters" class="why-it-matters">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span data-translate="whyThis">Why This</span> <span class="gradient-text" data-translate="matters">Matters</span>
+                </h2>
+                <div class="section-description">
+                    <p>A clean and well-managed city is every citizen's right. This platform reduces the gap between 
+                    people and government by creating a transparent and efficient complaint resolution process.</p>
+                    <p class="highlight-text">Together, we can achieve sustainable and green urban development.</p>
+                </div>
+            </div>
+
+            <div class="impacts-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-title" data-translate="qualityOfLife">Quality of Life</h3>
+                        <p class="impact-description" data-translate="qualityOfLifeDesc">Cleaner streets, better infrastructure, and safer neighborhoods improve daily life for everyone.</p>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"/>
+                            <path d="M5 21V7l8-4v18"/>
+                            <path d="M19 21V11l-6-4"/>
+                        </svg>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-title" data-translate="goodGovernance">Good Governance</h3>
+                        <p class="impact-description" data-translate="goodGovernanceDesc">Transparent communication between citizens and authorities builds trust and accountability.</p>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-title" data-translate="environmentalImpact">Environmental Impact</h3>
+                        <p class="impact-description" data-translate="environmentalImpactDesc">Quick resolution of environmental issues contributes to a sustainable, green future.</p>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="impact-content">
+                        <h3 class="impact-title" data-translate="communityUnity">Community Unity</h3>
+                        <p class="impact-description" data-translate="communityUnityDesc">Citizens working together with authorities creates a stronger, more connected community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call-to-action quote -->
+            <div class="quote-card">
+                <blockquote class="quote-text">
+                    "When citizens and government work together transparently, 
+                    extraordinary things happen for our communities."
+                </blockquote>
+                <p class="quote-subtitle">Join thousands of citizens making a difference</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                
+                <h2 class="cta-title">
+                    <span data-translate="readyToMake">Ready to Make Your City</span> <span class="gradient-text" data-translate="better">Better?</span>
+                </h2>
+                
+                <p class="cta-description" data-translate="ctaDescription">
+                    Take the first step towards building a cleaner, greener, and more responsive community. 
+                    Your voice matters, and your reports create real change.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="report-issue.html" class="btn btn-primary btn-lg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        Report an Issue
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12,5 19,12 12,19"/>
+                        </svg>
+                    </a>
+                    
+                    <a href="view-issues.html" class="btn btn-outline btn-lg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                        </svg>
+                        Track Status
+                    </a>
+                </div>
+
+                <!-- Trust indicators -->
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <div class="trust-number success">24/7</div>
+                        <div class="trust-label" data-translate="systemAvailable">System Available</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-number primary">100%</div>
+                        <div class="trust-label" data-translate="securePrivate">Secure & Private</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-number progress" data-translate="realtime">Real-time</div>
+                        <div class="trust-label" data-translate="statusUpdates">Status Updates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Main Footer Content -->
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Civic Report</span>
+                    </div>
+                    <p class="footer-description" data-translate="footerDescription">
+                        Building cleaner, greener cities through transparent civic issue reporting 
+                        and resolution. Together, we make our communities better.
+                    </p>
+                    <a href="about.html" class="btn btn-secondary btn-sm">
+                        Learn More 
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7"/>
+                            <path d="M7 7h10v10"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-title" data-translate="quickLinks">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="report-issue.html">Report Issue</a></li>
+                        <li><a href="view-issues.html">View Issues</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="Gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h3 class="footer-title" data-translate="resources">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="admin-login.html">Admin Login</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-title" data-translate="contactInfo">Contact Information</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <div class="contact-label">Municipal Office</div>
+                                <div class="contact-value">City Hall, Main Street<br>Vijayawada, AP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:support@civicreport.com" class="contact-value">support@civicreport.com</a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <a href="tel:+911234567890" class="contact-value">+91-1234567890</a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <div>
+                                <div class="contact-label">Helpline Hours</div>
+                                <div class="contact-value">24/7 Online Support<br>Mon-Fri: 9 AM - 6 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="footer-copyright" data-translate="copyright">
+                    © 2025 Civic Issue Reporting System. All rights reserved.
+                </div>
+                <div class="footer-tagline" data-translate="tagline">
+                    Built with ❤️ for cleaner, greener cities
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="languages.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Test API Connection -->
+    <script>
+        // Test API connection when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add test button to hero section
+            const heroButtons = document.querySelector('.hero-buttons');
+            if (heroButtons) {
+                const testButton = document.createElement('button');
+                testButton.className = 'btn btn-secondary btn-sm';
+                testButton.innerHTML = 'Test Backend Connection';
+                testButton.onclick = testAPI;
+                testButton.style.marginTop = '10px';
+                heroButtons.appendChild(testButton);
+            }
+        });
+    </script>
+  </body>
+</html>

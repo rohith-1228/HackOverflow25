@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Reported Issues - Civic Issue Reporting System</title>
+    <link rel="stylesheet" href="view-issues-styles.css">
+    <link rel="stylesheet" href="loading-styles.css">
+    <link rel="stylesheet" href="status-update-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Civic Report</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
+                <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="Gallery.html" class="nav-link" data-translate="gallery">Gallery</a>
+                <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
+                <a href="view-issues.html" class="nav-link active" data-translate="viewIssues">View Issues</a>
+                <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link active" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link" data-translate="contact">Contact</a>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Your Reported Issues</h1>
+                <p class="page-subtitle">Track the status of issues you have reported to your local authority</p>
+            </div>
+
+            <!-- Search & Filters Section -->
+            <div class="search-filters-section">
+                <div class="search-container">
+                    <div class="search-input-group">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="Search by Issue ID, Title, or keywords..."
+                        >
+                        <button class="clear-search-btn" id="clearSearchBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="statusFilter" class="filter-label">Status</label>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="locationFilter" class="filter-label">Location</label>
+                        <select id="locationFilter" class="filter-select">
+                            <option value="">All Locations</option>
+                            <option value="downtown">Downtown</option>
+                            <option value="residential">Residential Area</option>
+                            <option value="commercial">Commercial Area</option>
+                            <option value="suburbs">Suburbs</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="dateFilter" class="filter-label">Date</label>
+                        <select id="dateFilter" class="filter-select">
+                            <option value="">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sortBy" class="filter-label">Sort By</label>
+                        <select id="sortBy" class="filter-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="status">By Status</option>
+                        </select>
+                    </div>
+
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="cardViewBtn" data-view="card">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                        </button>
+                        <button class="view-btn" id="tableViewBtn" data-view="table">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Issues Display Section -->
+            <div class="issues-section">
+                <div class="issues-header">
+                    <h2 class="issues-title">Your Issues</h2>
+                    <div class="issues-stats">
+                        <span class="stat-item">
+                            <span class="stat-number" id="totalIssues">0</span>
+                            <span class="stat-label">Total</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-number" id="pendingCount">0</span>
+                            <span class="stat-label">Pending</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-number" id="progressCount">0</span>
+                            <span class="stat-label">In Progress</span>
+                        </span>
+                        <span class="stat-item">
+                            <span class="stat-number" id="resolvedCount">0</span>
+                            <span class="stat-label">Resolved</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card View -->
+                <div class="issues-grid" id="issuesGrid">
+                    <!-- Issues will be dynamically loaded here -->
+                </div>
+
+                <!-- Table View -->
+                <div class="issues-table-container hidden" id="issuesTable">
+                    <table class="issues-table">
+                        <thead>
+                            <tr>
+                                <th>Issue ID</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Location</th>
+                                <th>Date Reported</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issuesTableBody">
+                            <!-- Table rows will be dynamically loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state hidden" id="emptyState">
+                    <div class="empty-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3 class="empty-title">No Issues Found</h3>
+                    <p class="empty-description">No issues match your current search and filter criteria.</p>
+                    <a href="report-issue.html" class="btn btn-primary">Report New Issue</a>
+                </div>
+
+                <!-- No Issues State -->
+                <div class="no-issues-state hidden" id="noIssuesState">
+                    <div class="no-issues-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="no-issues-title">You haven't reported any issues yet</h3>
+                    <p class="no-issues-description">Start by reporting your first civic issue to help make your city better.</p>
+                    <a href="report-issue.html" class="btn btn-primary">Report Your First Issue</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Issue Detail Modal -->
+    <div id="issueDetailModal" class="modal hidden">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Issue Details</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Issue details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22,4 12,14.01 9,11.01"/>
+                </svg>
+            </div>
+            <h3 class="modal-title">Confirm Resolution</h3>
+            <p class="modal-message">Has this issue been resolved to your satisfaction?</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="notResolvedBtn">No, Still Unresolved</button>
+                <button class="btn btn-primary" id="resolvedBtn">Yes, It's Fixed</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="view-issues-script.js"></script>
+</body>
+</html>

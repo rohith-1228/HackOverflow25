@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Civic Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Gallery.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Civic Report</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu desktop-nav">
+                <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                <a href="about.html" class="nav-link" data-translate="about">About</a>
+                <a href="Gallery.html" class="nav-link active" data-translate="gallery">Gallery</a>
+                <a href="report-issue.html" class="nav-link" data-translate="reportIssue">Report Issue</a>
+                <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
+                <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                
+                <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+                <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link active" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link" data-translate="contact">Contact</a>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
+        </div>
+    </nav>
+
+           <style>
+/* Civic Issue Reporting System - CSS Styles */
+:root {
+  --background: #ffffff;
+  --foreground: #262626;
+  --primary: #059669;
+  --primary-foreground: #ffffff;
+  --primary-light: #d1fae5;
+  --secondary: #ea580c;
+  --secondary-foreground: #ffffff;
+  --secondary-light: #fed7aa;
+  --trust-orange: #ea580c;
+  --trust-orange-foreground: #ffffff;
+  --warning: #f59e0b;
+  --warning-foreground: #ffffff;
+  --progress: #ea580c;
+  --progress-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --success: #059669;
+  --success-foreground: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #262626;
+  --card-light: #f9fafb;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #f9fafb;
+  --accent-foreground: #262626;
+  --border: #e5e7eb;
+  --input: #f9fafb;
+  --ring: #059669;
+  --shadow-card: 0 4px 6px -1px rgba(38, 38, 38, 0.1), 0 2px 4px -1px rgba(38, 38, 38, 0.06);
+  --shadow-hero: 0 20px 25px -5px rgba(5, 150, 105, 0.15), 0 10px 10px -5px rgba(234, 88, 12, 0.1);
+  --shadow-floating: 0 10px 15px -3px rgba(38, 38, 38, 0.1), 0 4px 6px -2px rgba(38, 38, 38, 0.05);
+  --shadow-orange: 0 8px 25px -5px rgba(234, 88, 12, 0.2);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (min-width: 640px) {
+  .nav-container {
+    padding: 0 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 0 2rem;
+  }
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+.nav-link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+.nav-link:hover {
+  color: var(--primary);
+}
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+}
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  right: 1rem;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-card);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: var(--transition-smooth);
+}
+.mobile-nav-link:hover {
+  color: var(--primary);
+  background-color: var(--accent);
+}
+.mobile-admin-btn {
+  margin: 0.5rem 0.75rem;
+}
+/* Language Switcher Styles */
+.lang-switcher {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.lang-button {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.lang-button:hover {
+    background: #047857;
+}
+.lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 150px;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-card);
+    margin-top: 0.5rem;
+    z-index: 60;
+    display: none;
+}
+.lang-dropdown.open {
+    display: block;
+}
+.lang-dropdown a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--foreground);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+.lang-dropdown a:hover {
+    background: var(--accent);
+    color: var(--primary);
+}
+/* Add this to your style section for mobile menu icon toggle */
+.mobile-menu-btn .menu-icon,
+.mobile-menu-btn .close-icon {
+    transition: opacity 0.3s ease-in-out;
+}
+</style>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const menuIcon = mobileMenuBtn.querySelector('.menu-icon');
+    const closeIcon = mobileMenuBtn.querySelector('.close-icon');
+
+    mobileMenuBtn.addEventListener('click', function() {
+        const isOpen = !mobileNav.classList.contains('hidden');
+        
+        if (isOpen) {
+            mobileNav.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        } else {
+            mobileNav.classList.remove('hidden');
+            menuIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+        }
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNav.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInsideNav = mobileNav.contains(event.target);
+        const isClickOnButton = mobileMenuBtn.contains(event.target);
+        
+        if (!isClickInsideNav && !isClickOnButton && !mobileNav.classList.contains('hidden')) {
+            mobileNav.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+    });
+
+    // Language Switcher (Desktop)
+    const langToggleBtn = document.getElementById('lang-toggle');
+    const langDropdown = document.getElementById('lang-dropdown');
+    
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            langDropdown.classList.toggle('hidden');
+        });
+    }
+
+    // Close language dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (langToggleBtn && langDropdown && !langToggleBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+            langDropdown.classList.add('hidden');
+        }
+    });
+    
+    // Language translations dictionary
+    const translations = {
+        en: {
+            logoText: "Civic Connect",
+            footerDesc: "Empowering citizens to report and track civic issues in their community for a better tomorrow.",
+            quickLinks: "Quick Links",
+            resources: "Resources",
+            contactInfo: "Contact Info",
+            home: "Home",
+            reportIssue: "Report Issue",
+            viewIssues: "View Issues",
+            contact: "Contact",
+            helpCenter: "Help Center",
+            privacyPolicy: "Privacy Policy",
+            terms: "Terms of Service",
+            accessibility: "Accessibility",
+            copyright: "Civic Connect. All rights reserved."
+        },
+        hi: {
+            logoText: "नागरिक कनेक्ट",
+            footerDesc: "नागरिकों को उनके समुदाय में नागरिक मुद्दों की रिपोर्ट करने और ट्रैक करने के लिए सशक्त बनाना ताकि एक बेहतर कल हो सके।",
+            quickLinks: "त्वरित लिंक",
+            resources: "संसाधन",
+            contactInfo: "संपर्क जानकारी",
+            home: "होम",
+            reportIssue: "समस्या रिपोर्ट करें",
+            viewIssues: "समस्याएं देखें",
+            contact: "संपर्क करें",
+            helpCenter: "सहायता केंद्र",
+            privacyPolicy: "गोपनीयता नीति",
+            terms: "सेवा की शर्तें",
+            accessibility: "पहुंच",
+            copyright: "नागरिक कनेक्ट। सभी अधिकार सुरक्षित।"
+        },
+        te: {
+            logoText: "సివిక్ కనెక్ట్",
+            footerDesc: "మెరుగైన భవిష్యత్తు కోసం వారి సమాజంలో పౌర సమస్యలను నివేదించడానికి మరియు ట్రాక్ చేయడానికి పౌరులను శక్తివంతం చేయడం.",
+            quickLinks: "శీఘ్ర లింకులు",
+            resources: "వనరులు",
+            contactInfo: "సంప్రదింపు సమాచారం",
+            home: "హోమ్",
+            reportIssue: "సమస్యను నివేదించండి",
+            viewIssues: "సమస్యలను వీక్షించండి",
+            contact: "సంప్రదించండి",
+            helpCenter: "సహాయ కేంద్రం",
+            privacyPolicy: "గోప్యతా విధానం",
+            terms: "సేవా నిబంధనలు",
+            accessibility: "అందుబాటు",
+            copyright: "సివిక్ కనెక్ట్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి."
+        }
+    };
+
+    function setLanguage(lang) {
+        const elementsToTranslate = document.querySelectorAll('[data-en], [data-hi], [data-te]');
+        elementsToTranslate.forEach(element => {
+            if (translations[lang] && element.dataset[lang]) {
+                element.textContent = element.dataset[lang];
+            }
+        });
+    }
+
+    const languageLinks = document.querySelectorAll('.lang-dropdown a, .lang-dropdown-mobile a');
+    languageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.dataset.lang;
+            setLanguage(lang);
+        });
+    });
+});
+</script>
+
+
+    <main>
+        <section class="gallery-hero">
+            <div class="container">
+                <h1 class="gallery-hero-title">Resolved Issues Gallery</h1>
+                <p class="gallery-hero-description">Browse through the before-and-after photos of issues successfully resolved by our community and authorities.</p>
+            </div>
+        </section>
+
+        <section id="resolved-issues" class="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Visual Proof of <span class="gradient-text">Resolution</span></h2>
+                    <p class="section-description">See the tangible impact of your reports with these compelling before and after transformations.</p>
+                </div>
+                <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                   <div class="carousel-inner">
+                    <!----   <div class="carousel-item active">
+                            <img src="./maxresdefault.jpg" height="650px" class="d-block w-100" alt="Before and after of a cleaned area">
+                        </div>-->
+                        <div class="carousel-item active">
+                            <img src="./lake clearage.webp" height="650px" class="d-block w-100" alt="Before and after of a lake clearage">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./trash-pickup-baltimore-before-after-01-600x404.jpg" height="650px" class="d-block w-100" alt="Before and after of trash pickup">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./LED-Nayland-before-and-after-Recovered.jpg" height="650px" class="d-block w-100" alt="Before and after of a streetlight repair">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./drpothole-left-3.jpg" height="650px" class="d-block w-100" alt="Before and after of a pothole repair">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./water leakage.jpg" height="650px" class="d-block w-100" alt="Before and after of a water leakage repair">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="search" class="search-options">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        Search and Filter <span class="gradient-text">Issues</span>
+                    </h2>
+                    <p class="section-description">
+                        Easily find issues by location, category, or status to stay informed about your community.
+                    </p>
+                </div>
+                <div class="search-container">
+                    <div class="search-grid">
+                        <div class="search-field">
+                            <label for="search-title">Search by Title</label>
+                            <input type="text" id="search-title" placeholder="e.g., Pothole, Trash Pickup">
+                        </div>
+                        <div class="search-field">
+                            <label for="search-category">Category</label>
+                            <select id="search-category">
+                                <option value="">All Categories</option>
+                                <option value="potholes">Potholes</option>
+                                <option value="garbage">Garbage</option>
+                                <option value="drainage">Drainage</option>
+                                <option value="streetlights">Streetlights</option>
+                                <option value="water-leakage">Water Leakage</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label for="search-area">Area</label>
+                            <input type="text" id="search-area" placeholder="e.g., Downtown, Main Street">
+                        </div>
+                        <div class="search-field">
+                            <label for="search-date">Date Posted</label>
+                            <input type="date" id="search-date">
+                        </div>
+                        <button class="btn btn-primary search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="completed-issues" class="card-gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Recently <span class="gradient-text">Completed Issues</span></h2>
+                    <p class="section-description">A showcase of the latest issues to be resolved by our dedicated city staff.</p>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="issue-cards-container">
+                    <div class="col" data-title="Potholes Repaired" data-category="potholes" data-area="Main Street" data-date="2025-08-29">
+                        <div class="card card-gallery">
+                            <img src="./drpothole-left-3.jpg" height="250px" class="card-img-top" alt="Pothole repair before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Potholes Repaired</h5>
+                                <p class="card-text">A series of potholes on Main Street were successfully filled and the road surface was made safe for commuters.</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Infrastructure | <strong>Area:</strong> Main Street | <strong>Date:</strong> 2025-08-29</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-title="Trash Pickup Completed" data-category="garbage" data-area="Central Park" data-date="2025-08-28">
+                        <div class="card card-gallery">
+                            <img src="./trash-pickup-baltimore-before-after-01-600x404.jpg" height="250px" class="card-img-top" alt="Trash pickup before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Trash Pickup Completed</h5>
+                                <p class="card-text">A large accumulation of garbage in the park was cleared, restoring the area for public use and recreation.This is been responded within 2hrs of time</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Sanitation | <strong>Area:</strong> Central Park | <strong>Date:</strong> 2025-08-28</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-title="Lake Clearage" data-category="environment" data-area="City Lake" data-date="2025-08-27">
+                        <div class="card card-gallery">
+                            <img src="./lake clearage.webp" height="250px" class="card-img-top" alt="Lake clearage before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Lake Clearage</h5>
+                                <p class="card-text">Algae and debris were removed from the city lake, significantly improving water quality and visual aesthetics.</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Environment | <strong>Area:</strong> City Lake | <strong>Date:</strong> 2025-08-27</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" data-title="Water Leakage Fixed" data-category="water-leakage" data-area="Downtown District" data-date="2025-08-26">
+                        <div class="card card-gallery">
+                            <img src="./water leakage.jpg" height="250px" class="card-img-top" alt="Water leakage repair before and after">
+                            <div class="card-body">
+                                <h5 class="card-title">Water Leakage Fixed</h5>
+                                <p class="card-text">A significant water leak from a broken pipe was promptly located and repaired, conserving water and preventing road damage.</p>
+                                <p class="card-text-meta"><strong>Category:</strong> Utilities | <strong>Area:</strong> Downtown District | <strong>Date:</strong> 2025-08-26</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text" data-en="Civic Green Resolve" data-hi="नागरिक ग्रीन रिजॉल्व" data-te="సివిక్ గ్రీన్ రిసాల్వ్">Civic Green Resolve</span>
+                    </div>
+                    <p class="footer-description" data-en="Empowering citizens to report and track civic issues in their community for a better tomorrow." data-hi="नागरिकों को उनके समुदाय में नागरिक मुद्दों की रिपोर्ट करने और ट्रैक करने के लिए सशक्त बनाना ताकि एक बेहतर कल हो सके।" data-te="మెరుగైన భవిష్యత్తు కోసం వారి సమాజంలో పౌర సమస్యలను నివేదించడానికి మరియు ట్రాక్ చేయడానికి పౌరులను శక్తివంతం చేయడం.">
+                        Empowering citizens to report and track civic issues in their community for a better tomorrow.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-en="Quick Links" data-hi="त्वरित लिंक" data-te="శీఘ్ర లింకులు">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-en="Home" data-hi="होम" data-te="హోమ్">Home</a></li>
+                        <li><a href="report-issue.html" data-en="Report Issue" data-hi="समस्या रिपोर्ट करें" data-te="సమస్యను నివేదించండి">Report Issue</a></li>
+                        <li><a href="view-issues.html" data-en="View Issues" data-hi="समस्याएं देखें" data-te="సమస్యలను వీక్షించండి">View Issues</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-hi="संपर्क करें" data-te="సంప్రదించండి">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-en="Resources" data-hi="संसाधन" data-te="వనరులు">Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-en="Help Center" data-hi="सहायता केंद्र" data-te="సహాయ కేంద్రం">Help Center</a></li>
+                        <li><a href="#" data-en="Privacy Policy" data-hi="गोपनीयता नीति" data-te="గోప్యతా విధానం">Privacy Policy</a></li>
+                        <li><a href="#" data-en="Terms of Service" data-hi="सेवा की शर्तें" data-te="సేవా నిబంధనలు">Terms of Service</a></li>
+                        <li><a href="#" data-en="Accessibility" data-hi="पहुंच" data-te="అందుబాటు">Accessibility</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-en="Contact Info" data-hi="संपर्क जानकारी" data-te="సంప్రదింపు సమాచారం">Contact Info</h3>
+                    <div class="footer-contact">
+                        <p>📧 <span data-en="support@civicgreen.com" data-hi="support@civicgreen.com" data-te="support@civicgreen.com">support@civicgreen.com</span></p>
+                        <p>📞 <span data-en="+1 (555) 123-4567" data-hi="+1 (555) 123-4567" data-te="+1 (555) 123-4567">+1 (555) 123-4567</span></p>
+                        <p>📍 <span data-en="123 Government Plaza, City, State 12345" data-hi="123 गवर्नमेंट प्लाजा, सिटी, स्टेट 12345" data-te="123 గవర్నమెంట్ ప్లాజా, సిటీ, స్టేట్ 12345">123 Government Plaza, City, State 12345</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="year">2025</span> <span data-en="Civic Green Resolve. All rights reserved." data-hi="नागरिक ग्रीन रिजॉल्व। सभी अधिकार सुरक्षित।" data-te="సివిక్ గ్రీన్ రిసాల్వ్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.">Civic Green Resolve. All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* This is the CSS from the provided contact-styles.css file. */
+        /* Paste the full content of contact-styles.css here */
+        /* Contact Page - CSS Styles */
+
+/* CSS Variables - Design System */
+:root {
+  /* Colors */
+  --background: #f8fafc;
+  --card-bg: #ffffff;
+  --foreground: #1e293b;
+  --primary: #059669;
+  --primary-hover: #047857;
+  --secondary: #ea580c;
+  --secondary-hover: #c2410c;
+  --success: #059669;
+  --success-bg: #f0fdf4;
+  --warning: #f59e0b;
+  --warning-bg: #fffbeb;
+  --error: #ef4444;
+  --error-bg: #fef2f2;
+  --info: #3b82f6;
+  --info-bg: #eff6ff;
+  --muted: #64748b;
+  --muted-foreground: #94a3b8;
+  --border: #e2e8f0;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-focus: #059669;
+  
+  /* Spacing */
+  --container-max-width: 1200px;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Transitions */
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navigation */
+.nav {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover {
+  background-color: var(--background);
+}
+
+/* Main Content */
+.main-content {
+  min-height: calc(100vh - 4rem);
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 4rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Contact Form */
+.contact-form-container {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+}
+
+.contact-form-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-form-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-header p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--foreground);
+  font-size: 0.875rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--input-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--input-bg);
+  color: var(--foreground);
+  transition: var(--transition);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.error-message.show {
+  display: block;
+}
+
+/* Checkbox Styles */
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  content: '✓';
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-loading {
+  display: none;
+}
+
+.btn-loading.show {
+  display: flex;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Contact Information */
+.contact-info-container {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem;
+  height: fit-content;
+}
+
+.contact-info-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contact-info-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.contact-info-header p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.contact-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-info-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.contact-info-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-info-item.emergency {
+  background: linear-gradient(135deg, var(--error-bg), #fef2f2);
+  border: 2px solid var(--error);
+}
+
+.contact-icon {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.contact-info-item.emergency .contact-icon {
+  background: linear-gradient(135deg, var(--error), #dc2626);
+}
+
+.contact-details h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.contact-details p {
+  color: var(--foreground);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+}
+
+.contact-note {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* Social Links */
+.social-links {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.social-links h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--background);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* FAQ Section */
+.faq-section {
+  background-color: var(--card-bg);
+  padding: 4rem 0;
+  margin-top: 2rem;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.faq-header p {
+  color: var(--muted);
+  font-size: 1.125rem;
+}
+
+.faq-grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.faq-question:hover {
+  background-color: rgba(5, 150, 105, 0.05);
+}
+
+.faq-icon {
+  transition: var(--transition);
+  color: var(--primary);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--foreground);
+  color: white;
+  padding: 3rem 0 1rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-contact p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: 2rem 2rem 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.success-icon {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--success-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--success);
+  margin: 0 auto 1rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: var(--transition);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+.modal-body {
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.modal-body p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .contact-form-container,
+  .contact-info-container {
+    padding: 1.5rem;
+  }
+
+  .contact-info-grid {
+    gap: 1rem;
+  }
+
+  .contact-info-item {
+    padding: 1rem;
+  }
+
+  .faq-header h2 {
+    font-size: 2rem;
+  }
+
+  .faq-question {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .faq-answer p {
+    padding: 0 1rem 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .modal-content {
+    margin: 1rem;
+    max-width: none;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .page-header {
+    padding: 2rem 0;
+  }
+
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .contact-section {
+    padding: 2rem 0;
+  }
+
+  .contact-form-container,
+  .contact-info-container {
+    padding: 1rem;
+  }
+
+  .contact-form {
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .btn-large {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .faq-section {
+    padding: 2rem 0;
+  }
+
+  .faq-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .footer {
+    padding: 2rem 0 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus,
+.btn:focus,
+.faq-question:focus,
+.modal-close:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Animation for loading states */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contact-form-container,
+.contact-info-container,
+.faq-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Print styles */
+@media print {
+  .nav,
+  .footer,
+  .modal {
+    display: none !important;
+  }
+  
+  .contact-form-container,
+  .contact-info-container {
+    box-shadow: none;
+    border: 1px solid var(--border);
+  }
+}
+    </style>
+    
+    <script>
+        // This is the JavaScript from the provided contact-script.js file.
+        // It's been extended to handle language changes.
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language translations dictionary
+            const translations = {
+                en: {
+                    logoText: "Civic Green Resolve",
+                    footerDesc: "Empowering citizens to report and track civic issues in their community for a better tomorrow.",
+                    quickLinks: "Quick Links",
+                    resources: "Resources",
+                    contactInfo: "Contact Info",
+                    home: "Home",
+                    reportIssue: "Report Issue",
+                    viewIssues: "View Issues",
+                    contact: "Contact",
+                    helpCenter: "Help Center",
+                    privacyPolicy: "Privacy Policy",
+                    terms: "Terms of Service",
+                    accessibility: "Accessibility",
+                    copyright: "Civic Green Resolve. All rights reserved."
+                },
+                hi: {
+                    logoText: "नागरिक ग्रीन रिजॉल्व",
+                    footerDesc: "नागरिकों को उनके समुदाय में नागरिक मुद्दों की रिपोर्ट करने और ट्रैक करने के लिए सशक्त बनाना ताकि एक बेहतर कल हो सके।",
+                    quickLinks: "त्वरित लिंक",
+                    resources: "संसाधन",
+                    contactInfo: "संपर्क जानकारी",
+                    home: "होम",
+                    reportIssue: "समस्या रिपोर्ट करें",
+                    viewIssues: "समस्याएं देखें",
+                    contact: "संपर्क करें",
+                    helpCenter: "सहायता केंद्र",
+                    privacyPolicy: "गोपनीयता नीति",
+                    terms: "सेवा की शर्तें",
+                    accessibility: "पहुंच",
+                    copyright: "नागरिक ग्रीन रिजॉल्व। सभी अधिकार सुरक्षित।"
+                },
+                te: {
+                    logoText: "సివిక్ గ్రీన్ రిసాల్వ్",
+                    footerDesc: "మెరుగైన భవిష్యత్తు కోసం వారి సమాజంలో పౌర సమస్యలను నివేదించడానికి మరియు ట్రాక్ చేయడానికి పౌరులను శక్తివంతం చేయడం.",
+                    quickLinks: "శీఘ్ర లింకులు",
+                    resources: "వనరులు",
+                    contactInfo: "సంప్రదింపు సమాచారం",
+                    home: "హోమ్",
+                    reportIssue: "సమస్యను నివేదించండి",
+                    viewIssues: "సమస్యలను వీక్షించండి",
+                    contact: "సంప్రదించండి",
+                    helpCenter: "సహాయ కేంద్రం",
+                    privacyPolicy: "గోప్యతా విధానం",
+                    terms: "సేవా నిబంధనలు",
+                    accessibility: "అందుబాటు",
+                    copyright: "సివిక్ గ్రీన్ రిసాల్వ్. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి."
+                }
+            };
+
+            // Language change function
+            function setLanguage(lang) {
+                const elementsToTranslate = document.querySelectorAll('[data-en], [data-hi], [data-te]');
+                elementsToTranslate.forEach(element => {
+                    if (translations[lang] && element.dataset[lang]) {
+                        element.textContent = element.dataset[lang];
+                    }
+                });
+            }
+
+            // You would need to trigger this function from a language selection button
+            // For example, if you have a button with id="changeLangBtn" and data-lang="hi"
+            // document.getElementById('changeLangBtn').addEventListener('click', function() {
+            //     setLanguage(this.dataset.lang);
+            // });
+        });
+    </script>
+    <script src="config.js"></script>
+    <script src="languages.js"></script>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="Gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Report Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="loading-styles.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+        .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .nav-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 0 2rem;
+  }
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary), #10b981);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+
+}
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  right: 1rem;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-card);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: var(--transition-smooth);
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary);
+  background-color: var(--accent);
+}
+
+.mobile-admin-btn {
+  margin: 0.5rem 0.75rem;
+}
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+        }
+        .progress-step-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: #e2e8f0;
+            color: #718096;
+            transition: all 0.3s ease-in-out;
+        }
+        .progress-step-icon.active {
+            background-color: #48bb78;
+            color: white;
+        }
+        .progress-step-text.active {
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .otp-input-container input {
+            width: 3rem;
+            height: 3rem;
+            text-align: center;
+            font-size: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .otp-input-container input:focus {
+            outline: none;
+            border-color: #48bb78;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .file-upload-box {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .file-upload-box img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        .file-upload-box .preview-container {
+            position: relative;
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .file-upload-box .cancel-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 9999px;
+            padding: 0.25rem;
+            transition: background-color 0.2s;
+        }
+        .file-upload-box .cancel-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        .image-preview-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            margin: 0.5rem;
+        }
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-preview-item .cancel-btn {
+            top: -5px;
+            right: -5px;
+            background-color: #fff;
+            border: 1px solid #48bb78;
+        }
+        
+        /* Fix scroll issue in step 3 */
+        .step-content {
+            overflow-y: auto;
+        }
+        
+        #step-3-content {
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            padding-right: 8px;
+            padding-bottom: 100px;
+        }
+        
+        .main-container {
+            max-height: none !important;
+            overflow: visible !important;
+        }
+        
+        /* Ensure file upload and location areas are scrollable */
+        .file-upload-box {
+            position: relative;
+            overflow: visible;
+            min-height: 200px;
+        }
+        
+        .space-y-6 {
+            overflow: visible;
+        }
+        
+        /* Fix for mobile scrolling */
+        @media (max-width: 768px) {
+            #step-3-content {
+                max-height: calc(100vh - 120px);
+                padding-bottom: 120px;
+            }
+        }
+        
+        #submit-btn-step3 {
+            display: none;
+        }
+        
+        #step-3-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #step-3-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        #step-3-content::-webkit-scrollbar-thumb {
+            background: #48bb78;
+            border-radius: 3px;
+        }
+        
+        #step-3-content::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <nav class="nav">
+        <style>
+    /* Civic Issue Reporting System - CSS Styles */
+    :root {
+        --background: #ffffff;
+        --foreground: #262626;
+        --primary: #059669;
+        --primary-foreground: #ffffff;
+        --primary-light: #d1fae5;
+        --secondary: #ea580c;
+        --secondary-foreground: #ffffff;
+        --secondary-light: #fed7aa;
+        --trust-orange: #ea580c;
+        --trust-orange-foreground: #ffffff;
+        --warning: #f59e0b;
+        --warning-foreground: #ffffff;
+        --progress: #ea580c;
+        --progress-foreground: #ffffff;
+        --destructive: #ef4444;
+        --destructive-foreground: #ffffff;
+        --success: #059669;
+        --success-foreground: #ffffff;
+        --card: #ffffff;
+        --card-foreground: #262626;
+        --card-light: #f9fafb;
+        --muted: #f9fafb;
+        --muted-foreground: #6b7280;
+        --accent: #f9fafb;
+        --accent-foreground: #262626;
+        --border: #e5e7eb;
+        --input: #f9fafb;
+        --ring: #059669;
+        --shadow-card: 0 4px 6px -1px rgba(38, 38, 38, 0.1), 0 2px 4px -1px rgba(38, 38, 38, 0.06);
+        --shadow-hero: 0 20px 25px -5px rgba(5, 150, 105, 0.15), 0 10px 10px -5px rgba(234, 88, 12, 0.1);
+        --shadow-floating: 0 10px 15px -3px rgba(38, 38, 38, 0.1), 0 4px 6px -2px rgba(38, 38, 38, 0.05);
+        --shadow-orange: 0 8px 25px -5px rgba(234, 88, 12, 0.2);
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: var(--font-family);
+        background-color: var(--background);
+        color: var(--foreground);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border-radius: 0.75rem;
+        font-weight: 500;
+        transition: var(--transition-smooth);
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        font-family: inherit;
+    }
+
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        height: 2rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #10b981);
+        color: var(--primary-foreground);
+        box-shadow: var(--shadow-hero);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: var(--shadow-hero);
+    }
+
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    @media (min-width: 640px) {
+        .nav-container {
+            padding: 0 1.5rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .nav-container {
+            padding: 0 2rem;
+        }
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .logo-icon {
+        width: 2rem;
+        height: 2rem;
+        background: linear-gradient(135deg, var(--primary), #10b981);
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--foreground);
+    }
+
+    .desktop-nav {
+        display: none;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .desktop-nav {
+            display: flex;
+        }
+    }
+
+    .nav-link {
+        color: var(--foreground);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover {
+        color: var(--primary);
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--foreground);
+    }
+
+    @media (min-width: 768px) {
+        .mobile-menu-btn {
+            display: none;
+        }
+    }
+
+    .mobile-nav {
+        position: absolute;
+        top: 100%;
+        left: 1rem;
+        right: 1rem;
+        background-color: var(--background);
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-card);
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .mobile-nav {
+            display: none !important;
+        }
+    }
+
+    .mobile-nav-link {
+        display: block;
+        padding: 0.75rem;
+        color: var(--foreground);
+        text-decoration: none;
+        border-radius: 0.375rem;
+        transition: var(--transition-smooth);
+    }
+
+    .mobile-nav-link:hover {
+        color: var(--primary);
+        background-color: var(--accent);
+    }
+
+    .mobile-admin-btn {
+        margin: 0.5rem 0.75rem;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+</style>
+
+<nav class="nav" id="navigation">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <div class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 6-1 8-8 8s-8-2-8-8 1-8 8-8 8 2 8 8z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+            </div>
+            <span class="logo-text">Civic Report</span>
+        </div>
+        <!-- Desktop Navigation -->
+        <div class="nav-menu desktop-nav">
+            <a href="index.html" class="nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="nav-link active" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="nav-link" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm" data-translate="adminLogin">Admin Login</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+    </div>
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav hidden" id="mobileNav">
+            <a href="index.html" class="mobile-nav-link" data-translate="home">Home</a>
+            <a href="about.html" class="mobile-nav-link" data-translate="about">About</a>
+            <a href="Gallery.html" class="mobile-nav-link" data-translate="gallery">Gallery</a>
+            <a href="report-issue.html" class="mobile-nav-link active" data-translate="reportIssue">Report Issue</a>
+            <a href="view-issues.html" class="mobile-nav-link" data-translate="viewIssues">View Issues</a>
+            <a href="contact.html" class="mobile-nav-link" data-translate="contact">Contact</a>
+            
+            <a href="admin-login.html" class="btn btn-primary btn-sm mobile-admin-btn" data-translate="adminLogin">Admin Login</a>
+        </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const menuIcon = mobileMenuBtn.querySelector('.menu-icon');
+        const closeIcon = mobileMenuBtn.querySelector('.close-icon');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            const isOpen = !mobileNav.classList.contains('hidden');
+            if (isOpen) {
+                mobileNav.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                mobileNav.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        });
+
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = mobileNav.contains(event.target);
+            const isClickOnButton = mobileMenuBtn.contains(event.target);
+            if (!isClickInsideNav && !isClickOnButton && !mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+
+    <main class="flex-grow flex items-start justify-center py-10 px-4 min-h-screen">
+        <div class="max-w-3xl w-full bg-white p-8 sm:p-12 rounded-2xl shadow-xl border border-gray-200 main-container">
+            <h1 class="text-3xl font-bold text-gray-800 text-center mb-2">Report a Community Issue</h1>
+            <div class="flex justify-center items-center mb-8">
+                <span class="text-sm font-semibold text-green-600 mr-2">Step <span id="current-step-text">1</span> of 3</span>
+                <div class="w-2/3 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-green-600 transition-all duration-300" style="width: 33.33%;"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-8">
+                <div class="progress-step w-1/3">
+                    <div id="step-1-icon" class="progress-step-icon active">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <span id="step-1-text" class="progress-step-text text-xs text-gray-600 mt-2 font-medium active">User Details</span>
+                </div>
+                <div class="progress-step w-1/3">
+                    <div id="step-2-icon" class="progress-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <span id="step-2-text" class="progress-step-text text-xs text-gray-600 mt-2">Problem Details</span>
+                </div>
+                <div class="progress-step w-1/3">
+                    <div id="step-3-icon" class="progress-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <span id="step-3-text" class="progress-step-text text-xs text-gray-600 mt-2">Location & Photo</span>
+                </div>
+            </div>
+
+            <form id="report-form">
+                <div id="step-1-content" class="step-content">
+                    <h2 class="text-xl font-bold text-gray-700 mb-6 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A7.96 7.96 0 0112 15a7.96 7.96 0 016.879 2.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Your Information
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Full name" required class="mt-1 block w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 transition duration-300">
+                        </div>
+                        <div>
+                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., 9876543210" minlength="10" maxlength="10" class="mt-1 block w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 transition duration-300">
+                        </div>
+                        <div class="relative">
+                            <label for="otp" class="block text-sm font-medium text-gray-700 mb-1">Verify Phone Number</label>
+                            <div class="flex items-center space-x-2">
+                                <button type="button" id="send-otp-btn" class="flex-shrink-0 text-sm font-medium text-green-600 border border-green-600 rounded-lg px-4 py-2 hover:bg-green-50 transition duration-300">
+                                    Send OTP
+                                </button>
+                                <div class="flex space-x-2 otp-input-container">
+                                    <input type="text" maxlength="1" id="otp-1" class="rounded-lg">
+                                    <input type="text" maxlength="1" id="otp-2" class="rounded-lg">
+                                    <input type="text" maxlength="1" id="otp-3" class="rounded-lg">
+                                    <input type="text" maxlength="1" id="otp-4" class="rounded-lg">
+                                    <input type="text" maxlength="1" id="otp-5" class="rounded-lg">
+                                    <input type="text" maxlength="1" id="otp-6" class="rounded-lg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-2-content" class="step-content hidden">
+                    <h2 class="text-xl font-bold text-gray-700 mb-6 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Problem Details
+                    </h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="issueType" class="block text-sm font-medium text-gray-700 mb-1">Select the type of issue</label>
+                            <select id="issueType" name="issueType" class="mt-1 block w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 transition duration-300">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Illegal Dumping/Trash">Illegal Dumping/Trash</option>
+                                <option value="Graffiti">Graffiti</option>
+                                <option value="Pothole">Pothole</option>
+                                <option value="Street Light Outage">Street Light Outage</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="problemDescription" class="block text-sm font-medium text-gray-700 mb-1">Problem Description *</label>
+                            <textarea id="problemDescription" name="problemDescription" rows="4" placeholder="Describe the issue in detail, including any relevant information about severity, safety concerns, or impact on the community." required class="mt-1 block w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 transition duration-300"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-3-content" class="step-content hidden">
+                    <h2 class="text-xl font-bold text-gray-700 mb-6 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Location & Evidence
+                    </h2>
+                    <div class="space-y-6 pr-2">
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location Details *</label>
+                            <input type="text" id="location" name="location" placeholder="Enter the street address or nearest intersection" required class="mt-1 block w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 transition duration-300">
+                        </div>
+                        <div class="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center text-gray-400 cursor-pointer hover:border-green-500 transition duration-300">
+                            <div class="flex flex-col items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <p class="mt-2 text-sm font-medium">Interactive map will load here</p>
+                                <p class="text-xs">Click to pinpoint exact location</p>
+                            </div>
+                            <input type="hidden" name="coordinates" id="coordinates">
+                        </div>
+                        <div class="file-upload-box border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-500 transition duration-300">
+                            <p class="text-sm font-medium text-gray-700 mb-2">Upload Photo *</p>
+                            <div id="upload-content-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-green-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                                <p class="text-lg text-gray-700 font-bold">Drag & Drop Photos Here</p>
+                                <p class="text-sm text-gray-500 mb-4">or click the button below</p>
+                                <button type="button" id="choose-photos-btn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                                    Choose Photos
+                                </button>
+                            </div>
+                            <div id="preview-container" class="preview-container flex-col">
+                                <div class="flex flex-wrap justify-center items-center">
+                                    </div>
+                                <div class="mt-4">
+                                    <button type="button" id="add-more-photos-btn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                                        Add More Photos
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="file" id="fileUpload" name="fileUpload" required class="hidden" accept="image/*,video/*" multiple>
+                        </div>
+                        
+                        <!-- Submit button inside step 3 -->
+                        <div class="flex justify-center mt-8">
+                            <button type="submit" id="submit-btn-step3" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300 shadow-md">
+                                Submit Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-8">
+                    <button type="button" id="prev-btn" class="flex items-center space-x-2 text-gray-600 hover:text-gray-800 font-medium py-2 px-4 rounded-lg transition duration-300 invisible">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Previous</span>
+                    </button>
+                    <button type="button" id="next-btn" class="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                        <span>Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <button type="submit" id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md hidden">
+                        Submit Report
+                    </button>
+                </div>
+            </form>
+            
+            <div class="mt-8 text-center text-sm text-gray-500">
+                Need help? <a href="#" class="text-green-600 hover:underline">Contact our support team</a>
+                <br><br>
+                <button onclick="testAPI()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                    Test Backend Connection
+                </button>
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 text-center text-gray-500 text-sm">
+        &copy; 2025 GreenWatch. All rights reserved.
+    </footer>
+    
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title" class="text-xl font-bold mb-4 text-gray-800"></h3>
+            <p id="modal-message" class="text-gray-600 mb-6"></p>
+            <button id="modal-close-btn" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script>
+        
+        const form = document.getElementById('report-form');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const steps = document.querySelectorAll('.step-content');
+        const progressBar = document.getElementById('progress-bar');
+        const currentStepText = document.getElementById('current-step-text');
+        const stepIcons = [
+            document.getElementById('step-1-icon'),
+            document.getElementById('step-2-icon'),
+            document.getElementById('step-3-icon')
+        ];
+        const stepTexts = [
+            document.getElementById('step-1-text'),
+            document.getElementById('step-2-text'),
+            document.getElementById('step-3-text')
+        ];
+        const modal = document.getElementById('message-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        const sendOtpBtn = document.getElementById('send-otp-btn');
+        const otpInputs = document.querySelectorAll('.otp-input-container input');
+        const locationInput = document.getElementById('location');
+        const fileUploadInput = document.getElementById('fileUpload');
+        const choosePhotosBtn = document.getElementById('choose-photos-btn');
+        const addMorePhotosBtn = document.getElementById('add-more-photos-btn');
+        const uploadContentContainer = document.getElementById('upload-content-container');
+        const previewContainer = document.getElementById('preview-container');
+
+        let currentStep = 0;
+        let otpState = 'send';
+        const correctOtp = '123456';
+        let filesArray = [];
+
+        function showMessage(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'flex';
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        function updateForm() {
+            steps.forEach((step, index) => {
+                step.classList.add('hidden');
+                stepIcons[index].classList.remove('active');
+                stepTexts[index].classList.remove('active');
+            });
+
+            steps[currentStep].classList.remove('hidden');
+            stepIcons[currentStep].classList.add('active');
+            stepTexts[currentStep].classList.add('active');
+
+            const progress = (currentStep + 1) / steps.length * 100;
+            progressBar.style.width = `${progress}%`;
+            currentStepText.textContent = currentStep + 1;
+
+            prevBtn.classList.toggle('invisible', currentStep === 0);
+            nextBtn.classList.toggle('hidden', currentStep === steps.length - 1);
+            submitBtn.classList.toggle('hidden', currentStep !== steps.length - 1);
+            
+            // Show/hide step 3 submit button
+            const submitBtnStep3 = document.getElementById('submit-btn-step3');
+            if (submitBtnStep3) {
+                submitBtnStep3.style.display = currentStep === steps.length - 1 ? 'block' : 'none';
+            }
+        }
+
+        function renderPreviews() {
+            const previewFlexContainer = previewContainer.querySelector('.flex-wrap');
+            previewFlexContainer.innerHTML = '';
+
+            if (filesArray.length > 0) {
+                uploadContentContainer.style.display = 'none';
+                previewContainer.style.display = 'flex';
+
+                filesArray.forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const previewItem = document.createElement('div');
+                        previewItem.className = 'image-preview-item';
+                        previewItem.innerHTML = `
+                            <img src="${e.target.result}" alt="Preview">
+                            <button type="button" class="cancel-btn" data-index="${index}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        `;
+
+                        previewItem.querySelector('.cancel-btn').addEventListener('click', (event) => {
+                            event.stopPropagation();
+                            const fileIndex = parseInt(event.currentTarget.dataset.index, 10);
+                            filesArray.splice(fileIndex, 1);
+                            
+                            const dataTransfer = new DataTransfer();
+                            filesArray.forEach(file => dataTransfer.items.add(file));
+                            fileUploadInput.files = dataTransfer.files;
+
+                            renderPreviews();
+                        });
+                        previewFlexContainer.appendChild(previewItem);
+                    }
+                    reader.readAsDataURL(file);
+                });
+            } else {
+                uploadContentContainer.style.display = 'block';
+                previewContainer.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep === 0) {
+                const fullName = document.getElementById('fullName').value.trim();
+                const phoneNumber = document.getElementById('phoneNumber').value.trim();
+                if (!fullName) {
+                    showMessage('Missing Information', 'Please enter your full name.');
+                    return;
+                }
+                if (phoneNumber.length !== 10) {
+                    showMessage('Invalid Phone Number', 'Please enter a valid 10-digit phone number.');
+                    return;
+                }
+            }
+            
+            if (currentStep === 1) {
+                const problemDescription = document.getElementById('problemDescription').value.trim();
+                if (!problemDescription) {
+                    showMessage('Missing Information', 'Please provide a detailed description of the problem.');
+                    return;
+                }
+            }
+
+            if (currentStep === 2) {
+                if (!locationInput.value.trim()) {
+                    showMessage('Missing Information', 'Please enter a location or street address.');
+                    return;
+                }
+                if (filesArray.length === 0) {
+                    showMessage('Missing Information', 'Please upload at least one photo or video.');
+                    return;
+                }
+            }
+
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateForm();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateForm();
+            }
+        });
+
+        // Handle both submit buttons
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            (async () => {
+                try {
+                    // Show loading state
+                    const submitButton = e.target.id === 'submit-btn-step3' ? 
+                        document.getElementById('submit-btn-step3') : 
+                        document.getElementById('submit-btn');
+                    const originalText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+
+                    // Prepare issue data
+                    const issueData = {
+                        title: document.getElementById('issueType').value || 'General Issue',
+                        content: document.getElementById('problemDescription').value,
+                        issueType: document.getElementById('issueType').value,
+                        location: document.getElementById('location').value,
+                        reporterName: document.getElementById('fullName').value,
+                        reporterEmail: document.getElementById('phoneNumber').value ? null : `user${Date.now()}@temp.com`,
+                        reporterPhone: document.getElementById('phoneNumber').value
+                    };
+
+                    // Always try mock backend first for demo purposes
+                    console.log('Using offline mode for demo');
+                    
+                    // Auto-register user (mock)
+                    if (!isAuthenticated()) {
+                        const mockUser = {
+                            token: 'demo-token-' + Date.now(),
+                            user: { id: Date.now(), username: issueData.reporterName, email: issueData.reporterEmail }
+                        };
+                        setToken(mockUser.token);
+                    }
+
+                    // Submit to mock backend
+                    const mockIssue = {
+                        _id: 'DEMO-' + Date.now().toString().slice(-6),
+                        ...issueData,
+                        status: 'pending',
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    // Save to localStorage
+                    const existingIssues = JSON.parse(localStorage.getItem('demoIssues') || '[]');
+                    existingIssues.push(mockIssue);
+                    localStorage.setItem('demoIssues', JSON.stringify(existingIssues));
+
+                    // Show success message
+                    showMessage('Report Submitted Successfully!', 
+                        `Your issue has been submitted with ID: ${mockIssue._id}. (Demo mode - data saved locally)`);
+                    
+                    // Reset form
+                    form.reset();
+                    filesArray = [];
+                    currentStep = 0;
+                    updateForm();
+                    renderPreviews();
+                    
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    showMessage('Submission Failed', 
+                        'An unexpected error occurred. Please try again.');
+                } finally {
+                    // Reset button state
+                    const submitButton = e.target.id === 'submit-btn-step3' ? 
+                        document.getElementById('submit-btn-step3') : 
+                        document.getElementById('submit-btn');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Report';
+                }
+            })();
+        }
+        
+        form.addEventListener('submit', handleSubmit);
+        document.getElementById('submit-btn-step3').addEventListener('click', handleSubmit);
+        
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+            input.addEventListener('input', () => {
+                let otpValue = '';
+                otpInputs.forEach(otpInput => otpValue += otpInput.value);
+                if (otpValue.length === 6) {
+                    if (otpValue !== correctOtp) {
+                        otpState = 'resend';
+                        sendOtpBtn.textContent = 'Resend OTP';
+                        showMessage(' OTP verification succesfull', 'Phone number verified successfully.');
+                    } else {
+                        otpState = 'verified';
+                    }
+                }
+            });
+        });
+        
+        sendOtpBtn.addEventListener('click', () => {
+             console.log('OTP sent!');
+             sendOtpBtn.textContent = 'Sent';
+             otpState = 'sent';
+             showMessage('OTP Sent', 'An OTP has been sent to your phone number.');
+        });
+        
+        fileUploadInput.addEventListener('change', (e) => {
+            // Append new files to the filesArray
+            Array.from(e.target.files).forEach(file => filesArray.push(file));
+            
+            // Re-create the FileList to reflect the updated array
+            const dataTransfer = new DataTransfer();
+            filesArray.forEach(file => dataTransfer.items.add(file));
+            fileUploadInput.files = dataTransfer.files;
+            
+            renderPreviews();
+        });
+        
+        choosePhotosBtn.addEventListener('click', () => {
+            fileUploadInput.click();
+        });
+
+        addMorePhotosBtn.addEventListener('click', () => {
+            fileUploadInput.click();
+        });
+
+        updateForm();
+    </script>
+</body>
+</html>
